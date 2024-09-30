@@ -1,5 +1,15 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #fff9e1;
+}
+a {
+  text-decoration: none;
+}
 .cart {
   position: relative;
+  color: black;
 }
 
 .box {
