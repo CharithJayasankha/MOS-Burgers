@@ -1,3 +1,4 @@
+const cartProductList = [];
 burgers = [
   {
     code: "B1001",
@@ -102,7 +103,7 @@ function productDisplay() {
   });
 }
 
-cartProductList = [];
+productDisplay();
 
 function addToCart(code) {
   productCount.textContent = ++count;
@@ -112,32 +113,7 @@ function addToCart(code) {
   }
 }
 
-let tableBody = document.getElementById("tableBody");
-
-function displayTable() {
-  console.log("hello");
-  cartProductList.forEach((element) => {
-    let el = `<tr>
-        <td>
-          <p class="text-muted mb-0">${element.code}</p>
-        </td>
-        <td>
-          <p class="text-muted mb-0">Classic Burger (Large)</p>
-        </td>
-        <td>
-          <p class="text-muted mb-0">650</p>
-        </td>
-        <td><p class="text-muted mb-0">0%</p></td>
-        <td>
-          <p class="text-muted mb-0">1</p>
-        </td>
-        <td>
-          <p class="text-muted mb-0">650</p>
-        </td>
-      </tr>`;
-
-    tableBody.innerHTML += el;
-  });
-}
-
-productDisplay();
+document.getElementById("cartBtn").onclick = function cartBtn() {
+  localStorage.setItem("array", JSON.stringify(cartProductList));
+  window.location.href = "pages/cartPage.html";
+};
