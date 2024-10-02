@@ -1,9 +1,12 @@
 const cartProductList = JSON.parse(localStorage.getItem("array"));
 let total = document.getElementById("total");
+let discount = document.getElementById("discount");
+let netPriceTag = document.getElementById("netPrice");
 
 let totalPrice = 0;
+let totalDiscount = 0;
+let netPrice = 0;
 function displayTable() {
-  console.log("hello");
   cartProductList.forEach((element) => {
     let el = `<tr>
           <td>
@@ -15,7 +18,7 @@ function displayTable() {
           <td>
             <p class="text-muted mb-0">${element.price}</p>
           </td>
-          <td><p class="text-muted mb-0">${element.discount}</p></td>
+          <td><p class="text-muted mb-0">${element.discount}%</p></td>
           <td>
             <p class="text-muted mb-0">${element.qty}</p>
           </td>
@@ -26,7 +29,10 @@ function displayTable() {
 
     tableBody.innerHTML += el;
     totalPrice += element.price * element.qty;
-    total.textContent = "RS. " + totalPrice + ".00";
+    totalDiscount += (element.price * element.discount) / 100;
+    total.textContent = totalPrice;
+    discount.textContent = "-" + totalDiscount + ".00";
+    netPriceTag.textContent = totalPrice - totalDiscount + ".00";
   });
 }
 

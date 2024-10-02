@@ -1,4 +1,63 @@
 const cartProductList = [];
+
+const beverages = [
+  {
+    code: "B1011",
+    name: "Orange Juice",
+    price: 120,
+    discount: 0,
+    stock: 10,
+    manufacturedDate: "2024.10.01",
+    expiredDate: "2024.10.10",
+    qty: 1,
+    img: "assets/11.jpg",
+  },
+  {
+    code: "B1012",
+    name: "Ice coffee",
+    price: 200,
+    discount: 0,
+    stock: 5,
+    manufacturedDate: "2024.10.05",
+    expiredDate: "2024.10.06",
+    qty: 1,
+    img: "assets/12.jpg",
+  },
+  {
+    code: "B1013",
+    name: "Coffee",
+    price: 150,
+    discount: 0,
+    stock: 8,
+    manufacturedDate: "2024.10.05",
+    expiredDate: "2024.10.06",
+    qty: 1,
+    img: "assets/13.jpg",
+  },
+  {
+    code: "B1014",
+    name: "Lemon Tea",
+    price: 100,
+    discount: 0,
+    stock: 4,
+    manufacturedDate: "2024.10.05",
+    expiredDate: "2024.10.06",
+    qty: 1,
+    img: "assets/14.jpg",
+  },
+  {
+    code: "B1015",
+    name: "Coca Cola",
+    price: 180,
+    discount: 0,
+    stock: 10,
+    manufacturedDate: "2024.10.05",
+    expiredDate: "2025.20.06",
+    qty: 1,
+    img: "assets/15.jpg",
+  },
+];
+
 const burgers = [
   {
     code: "B1001",
@@ -113,115 +172,123 @@ const burgers = [
 ];
 
 let burgerList = document.getElementById("burgerList");
+let drinkList = document.getElementById("drinkList");
 let productCount = document.getElementById("productCount");
 
 let count = 0;
 
 function productDisplay() {
-  burgers.forEach((element) => {
+  createCards(burgers, burgerList);
+  createCards(beverages, drinkList);
+}
+
+function createCards(array, parentElement) {
+  array.forEach((element) => {
     let product = ` <div class="col">
-          <div  class="card shadow-sm" data-bs-toggle="modal"
-                data-bs-target="#${element.code}" >
-            <img class="rounded-top" src="${element.img}" alt="hello" />
-            <h5 class="m-2">${element.name}</h5>
-            <p class="m-2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio cum
-            </p>
-            <div class="d-flex justify-content-between my-2 mx-2">
-              <p>RS.${element.price}</p>
-              <button
-                  
-                type="button"
-                class="btn btn-sm btn-outline-secondary"
-                style="height: 35px; width: 100px"
-              >
-                Add to Cart
-              </button>
-            </div>
-          </div>
-        </div>
-        
-         <!-- Modal -->
-      <div
-        class="modal fade"
-        id="${element.code}"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#d46f10">
-              ${element.name}
-              </h1>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <div class="container d-md-flex">
-                <div class="container col-md-6 col-sm-12">
-                <img  src="${element.img}" alt="hello" width="200px" />
-              </div>
-              <div class="container col-md-6 col-sm-12">
-                <p><strong>Description :</strong><br>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque, nisi.</p>
-                <p><strong>Manufactured Date : </strong>${
-                  element.manufacturedDate
-                }</p>
-                <p class="m-0"><strong>Expired Date Date : </strong>${
-                  element.expiredDate
-                }</p>
-                <p><strong>${
-                  element.stock <= 0
-                    ? '<p class="text-danger">Out Stock</p>'
-                    : '<p class="text-success">Available</p>'
-                }</strong></p>
-                <p><strong>Price : </strong>${element.price}</p>
-                <div class="form-outline" data-mdb-input-init>
-                  <label class="form-label" for="quantity">Quantity</label>
-                  <input type="number" id="${
-                    element.code
-                  }quantity" class="form-control" placeholder="1" />
-                </div>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button  type="button"class="btn" style="background-color:#d46f10; color:white" data-bs-dismiss="modal" onclick="addToCart('${
-                element.code
-              }')" >
-                Add to cart
-              </button>
-            </div>
+        <div  class="card shadow-sm" data-bs-toggle="modal"
+              data-bs-target="#${element.code}" >
+          <img class="rounded-top" src="${element.img}" alt="hello" />
+          <h5 class="m-2">${element.name}</h5>
+          <p class="m-2">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio cum
+          </p>
+          <div class="d-flex w-auto justify-content-between my-2 mx-2">
+            <p>RS.${element.price}</p>
+            <p class="text-danger">${
+              element.discount == 0 ? "" : "-" + element.discount + "%"
+            }</p>
+             <p style="justify-self: end;"><strong>${
+               element.stock <= 0
+                 ? '<p class="text-danger">Out Stock</p>'
+                 : '<p class="text-success">Available</p>'
+             }</strong></p>
           </div>
         </div>
       </div>
-        `;
+      
+       <!-- Modal -->
+    <div
+      class="modal fade"
+      id="${element.code}"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:#d46f10">
+            ${element.name}
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="container d-md-flex">
+              <div class="container col-md-6 col-sm-12">
+              <img  src="${element.img}" alt="hello" width="200px" />
+            </div>
+            <div class="container col-md-6 col-sm-12">
+              <p><strong>Description :</strong><br>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque, nisi.</p>
+              <p><strong>Manufactured Date : </strong>${
+                element.manufacturedDate
+              }</p>
+              <p class="m-0"><strong>Expired Date Date : </strong>${
+                element.expiredDate
+              }</p>
+              <p><strong>${
+                element.stock <= 0
+                  ? '<p class="text-danger">Out Stock</p>'
+                  : '<p class="text-success">Available</p>'
+              }</strong></p>
+              <div class="d-flex">
+                <p><strong>Price : </strong>${element.price}</p>
+                <p class="text-danger">${
+                  element.discount == 0 ? "" : "-" + element.discount + "%"
+                }</p>
+              </div>
+              <div class="form-outline" data-mdb-input-init>
+                <label class="form-label" for="quantity">Quantity</label>
+                <input type="number" id="${
+                  element.code
+                }quantity" class="form-control" placeholder="0" />
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button  type="button"class="btn" style="background-color:#d46f10; color:white" data-bs-dismiss="modal" 
+            onclick="addToCart('${element.code}')" >
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+      `;
 
-    burgerList.innerHTML += product;
+    parentElement.innerHTML += product;
   });
 }
 
-productDisplay();
-
 function addToCart(code) {
   let quantity = document.getElementById(code + "quantity");
-  console.log(quantity.value);
-
+  let allProducts = [...burgers, ...beverages]; // Combine arrays
   productCount.textContent = ++count;
 
-  for (let index = 0; index < burgers.length; index++) {
-    if (burgers[index].code == code) {
-      burgers[index].qty = quantity.value;
-      cartProductList.push(burgers[index]);
+  for (let index = 0; index < allProducts.length; index++) {
+    if (allProducts[index].code == code) {
+      allProducts[index].qty = quantity.value;
+      cartProductList.push(allProducts[index]);
     }
   }
 }
 
+productDisplay();
 document.getElementById("cartBtn").onclick = function cartBtn() {
   localStorage.setItem("array", JSON.stringify(cartProductList));
   window.location.href = "pages/cartPage.html";
