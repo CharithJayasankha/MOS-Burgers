@@ -23,6 +23,19 @@ a {
   left: 10px;
   top: -1px;
 }
+.categoryList {
+  position: sticky;
+  top: 125px;
+  z-index: 1;
+}
+
+.categoryBtn {
+  border: 1px solid #d46f10;
+  padding: 5px;
+  color: #d46f10;
+  border-radius: 5px;
+  background-color: white;
+}
 
 .cartBtn {
   width: auto;
