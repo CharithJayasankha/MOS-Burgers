@@ -1,0 +1,51 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #fff9e1;
+}
+a {
+  text-decoration: none;
+}
+.cart {
+  position: relative;
+  color: black;
+}
+
+.box {
+  text-align: center;
+  font-size: 14px;
+  color: #f5f5f5;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  position: absolute;
+  left: 10px;
+  top: -1px;
+}
+.categoryList {
+  position: sticky;
+  top: 125px;
+  z-index: 1;
+}
+
+.categoryBtn {
+  border: 1px solid #d46f10;
+  padding: 5px;
+  color: #d46f10;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.cartBtn {
+  width: auto;
+  height: 40px;
+  padding: 0;
+}
+
+.titleBox {
+  text-align: center;
+  color: white;
+  height: 30px;
+  background-color: #d46f10;
+}
