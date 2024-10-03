@@ -1,0 +1,22 @@
+.navbar {
+  z-index: 1;
+  background-color: #fff9e1;
+}
+
+.searchBtn {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 10px;
+}
+
+#addItem {
+  width: 150px;
+}
+.title {
+  background-color: #d46f10;
+}
+
+.trash {
+  color: rgb(255, 52, 52);
+}

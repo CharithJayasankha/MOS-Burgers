@@ -13,13 +13,19 @@
     <title>MOS Burgers</title>
   </head>
   <body>
-    <div class="wrap d-flex container m-auto">
+    <div class="wrap d-flex container-fluid m-auto overflow-hidden">
+      <img
+        src="assets/homepage.jpg"
+        class="img-fluid position-absolute z-0 d-none d-md-block d-sm-none"
+        style="left: 0"
+        alt="..."
+      />
       <div
-        class="main container d-md-flex d-block p-md-5 p-sm-0 rounded-5"
-        style="background-color: #e4a265"
+        class="main container d-md-flex d-block p-md-5 p-sm-0 rounded-4 z-1"
+        style="background-color: rgba(228, 162, 101, 0.7)"
       >
         <div class="col-12 col-md-6 d-none d-md-block">
-          <img class="rounded-start-5" src="assets/i.png" alt="icon" />
+          <img class="rounded-3" src="assets/i.png" alt="icon" />
         </div>
         <div class="buttonSection container col-12 col-md-6 m-0">
           <button
@@ -29,7 +35,13 @@
           >
             Place Order
           </button>
-          <button class="routBtn shadow" type="button">Store Management</button>
+          <button
+            class="routBtn shadow"
+            onclick="window.location.href='pages/storeManagement.html'"
+            type="button"
+          >
+            Store Management
+          </button>
           <button class="routBtn shadow" type="button">
             Customer Registration
           </button>
