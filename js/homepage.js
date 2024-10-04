@@ -1,6 +1,8 @@
 import { beverages, burgers } from "./items.js";
+const burgerUpdateList = JSON.parse(sessionStorage.getItem("burgers"));
+const beverageUpdateList = JSON.parse(sessionStorage.getItem("beverages"));
 
-const cartProductList = [];
+const cartProductList = JSON.parse(sessionStorage.getItem("array")) || [];
 console.log(beverages);
 console.log(burgers);
 
@@ -11,8 +13,14 @@ let productCount = document.getElementById("productCount");
 let count = 0;
 
 function productDisplay() {
-  createCards(beverages, drinkList);
-  createCards(burgers, burgerList);
+  createCards(
+    beverageUpdateList == null ? beverages : beverageUpdateList,
+    drinkList
+  );
+  createCards(
+    burgerUpdateList == null ? burgers : burgerUpdateList,
+    burgerList
+  );
 }
 
 function createCards(array, parentElement) {
@@ -95,7 +103,7 @@ function createCards(array, parentElement) {
           </div>
           <div class="modal-footer">
             <button  type="button"class="btn" style="background-color:#d46f10; color:white" data-bs-dismiss="modal" 
-            onclick="addToCart('${element.code}')" >
+            data-code="${element.code}" >
               Add to cart
             </button>
           </div>
@@ -108,22 +116,39 @@ function createCards(array, parentElement) {
   });
 }
 
+document.addEventListener("click", function (e) {
+  if (e.target && e.target.classList.contains("btn")) {
+    const productCode = e.target.getAttribute("data-code");
+    addToCart(productCode);
+  }
+});
+
+document.addEventListener("click", function (e) {
+  if (e.target && e.target.classList.contains("categoryBtn")) {
+    const num = e.target.getAttribute("tabNum");
+    go(num);
+  }
+});
+productCount.textContent = cartProductList.length;
+
 function addToCart(code) {
   let quantity = document.getElementById(code + "quantity");
-  let allProducts = [...burgers, ...beverages]; // Combine arrays
-  productCount.textContent = ++count;
+  let allProducts = [
+    ...(burgerUpdateList == null ? burgers : burgerUpdateList),
+    ...(beverageUpdateList == null ? beverages : beverageUpdateList),
+  ]; // Combine arrays
 
   for (let index = 0; index < allProducts.length; index++) {
     if (allProducts[index].code == code) {
       allProducts[index].qty = quantity.value;
       cartProductList.push(allProducts[index]);
+      sessionStorage.setItem("array", JSON.stringify(cartProductList));
+      productCount.textContent = cartProductList.length;
     }
   }
 }
 
-productDisplay();
 document.getElementById("cartBtn").onclick = function cartBtn() {
-  localStorage.setItem("array", JSON.stringify(cartProductList));
   window.location.href = "cartPage.html";
 };
 
@@ -142,3 +167,4 @@ function go(btn) {
     console.log("drinks");
   }
 }
+document.addEventListener("DOMContentLoaded", productDisplay);

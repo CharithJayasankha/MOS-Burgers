@@ -48,7 +48,13 @@
           </div>
         </div>
         <div class="container d-flex justify-content-end">
-          <button id="addItem" type="button" class="btn btn-success">
+          <button
+            id="addItem"
+            type="button"
+            class="btn btn-success"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          >
             Add New Item
           </button>
         </div>
@@ -67,37 +73,262 @@
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody id="tbody">
-            <tr>
-              <th
-                colspan="8"
-                style="
-                  background-color: #e2832b;
-                  text-align: center;
-                  color: white;
-                "
-              >
-                BURGERS
-              </th>
-            </tr>
-          </tbody>
-          <tbody id="tbody1">
-            <tr>
-              <th
-                colspan="8"
-                style="
-                  background-color: #e2832b;
-                  text-align: center;
-                  color: white;
-                "
-              >
-                BEVERAGES
-              </th>
-            </tr>
-          </tbody>
+          <tr>
+            <th
+              colspan="8"
+              style="
+                background-color: #e2832b;
+                text-align: center;
+                color: white;
+              "
+            >
+              BURGERS
+            </th>
+          </tr>
+          <tbody id="tbody"></tbody>
+          <tr>
+            <th
+              colspan="8"
+              style="
+                background-color: #e2832b;
+                text-align: center;
+                color: white;
+              "
+            >
+              BEVERAGES
+            </th>
+          </tr>
+          <tbody id="tbody1"></tbody>
         </table>
       </div>
     </div>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              Add New Item
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <!-- for add new item -->
+          <div class="modal-body">
+            <!-- from -->
+            <form class="container mt-5">
+              <!-- Select Category -->
+              <div class="mb-3">
+                <label for="category" class="form-label">Select Category</label>
+                <select class="form-select" id="category" required>
+                  <option selected value=" " disabled>Select Category</option>
+                  <option value="burger">Burger</option>
+                  <option value="beverages">Beverages</option>
+                </select>
+              </div>
+
+              <!-- Item Code -->
+              <div class="mb-3">
+                <label for="itemCode" class="form-label">Item Code</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="itemCode"
+                  placeholder="Enter Item Code"
+                  required
+                />
+              </div>
+
+              <!-- Product Name -->
+              <div class="mb-3">
+                <label for="productName" class="form-label">Product Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="productName"
+                  placeholder="Enter Product Name"
+                  required
+                />
+              </div>
+
+              <!-- Price -->
+              <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="price"
+                  placeholder="Enter Price"
+                  required
+                />
+              </div>
+
+              <!-- Discount -->
+              <div class="mb-3">
+                <label for="discount" class="form-label">Discount (%)</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="discount"
+                  placeholder="Enter Discount"
+                  required
+                />
+              </div>
+
+              <!-- Stock -->
+              <div class="mb-3">
+                <label for="stock" class="form-label">Stock</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="stock"
+                  placeholder="Enter Stock Quantity"
+                  required
+                />
+              </div>
+
+              <!-- Manufactured Date -->
+              <div class="mb-3">
+                <label for="manufacturedDate" class="form-label"
+                  >Manufactured Date</label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="manufacturedDate"
+                  required
+                />
+              </div>
+
+              <!-- Expired Date -->
+              <div class="mb-3">
+                <label for="expiredDate" class="form-label">Expired Date</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  id="expiredDate"
+                  required
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="addBtn btn btn-success">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- update Modal -->
+    <div
+      class="modal fade"
+      id="updateModel"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Update Item</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="updateForm">
+              <div class="mb-3">
+                <label for="updateItemCode" class="form-label">Item Code</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="updateItemCode"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="updateProductName" class="form-label"
+                  >Product Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="updateProductName"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="updatePrice" class="form-label">Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="updatePrice"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="updateDiscount" class="form-label">Discount</label>
+                <input type="number" class="form-control" id="updateDiscount" />
+              </div>
+              <div class="mb-3">
+                <label for="updateStock" class="form-label">Stock</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="updateStock"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="updateManufacturedDate" class="form-label"
+                  >Manufactured Date</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="updateManufacturedDate"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="updateExpiredDate" class="form-label"
+                  >Expired Date</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="updateExpiredDate"
+                  required
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" id="saveUpdateBtn">
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

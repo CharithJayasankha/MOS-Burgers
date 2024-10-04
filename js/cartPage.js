@@ -1,4 +1,5 @@
-const cartProductList = JSON.parse(localStorage.getItem("array"));
+const cartProductList = JSON.parse(sessionStorage.getItem("array"));
+const ordersList = JSON.parse(sessionStorage.getItem("ordersList")) || [];
 let total = document.getElementById("total");
 let discount = document.getElementById("discount");
 let netPriceTag = document.getElementById("netPrice");
@@ -34,6 +35,16 @@ function displayTable() {
     discount.textContent = "-" + totalDiscount + ".00";
     netPriceTag.textContent = totalPrice - totalDiscount + ".00";
   });
+}
+
+document.querySelector(".payBtn").addEventListener("click", placeOrder);
+
+function placeOrder() {
+  ordersList.push(cartProductList);
+  sessionStorage.setItem("ordersList", JSON.stringify(ordersList));
+  alert("Successfully Place Order...");
+  window.location.href = "homepage.html";
+  sessionStorage.removeItem("array");
 }
 
 displayTable();

@@ -19,8 +19,17 @@ a {
 }
 
 .payBtn {
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
   background-color: #d46f10;
   color: white;
+  font-weight: 600;
   justify-content: end;
   margin-bottom: 20px;
+}
+
+.payBtn:hover {
+  background-color: #f19b4a;
+  color: rgb(0, 0, 0);
 }
