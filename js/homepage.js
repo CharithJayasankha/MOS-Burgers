@@ -1,6 +1,8 @@
+import { beverages, burgers } from "./items.js";
+
 const cartProductList = [];
-const burgers = JSON.parse(localStorage.getItem("burgers"));
-const beverages = JSON.parse(localStorage.getItem("beverages"));
+console.log(beverages);
+console.log(burgers);
 
 let burgerList = document.getElementById("burgerList");
 let drinkList = document.getElementById("drinkList");
@@ -9,8 +11,8 @@ let productCount = document.getElementById("productCount");
 let count = 0;
 
 function productDisplay() {
-  createCards(burgers, burgerList);
   createCards(beverages, drinkList);
+  createCards(burgers, burgerList);
 }
 
 function createCards(array, parentElement) {
