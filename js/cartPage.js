@@ -43,7 +43,7 @@ function placeOrder() {
   ordersList.push(cartProductList);
   sessionStorage.setItem("ordersList", JSON.stringify(ordersList));
   alert("Successfully Place Order...");
-  window.location.href = "../pages/homepage.html";
+  window.location.href = "../pages/homePage.html";
   sessionStorage.removeItem("array");
 }
 
