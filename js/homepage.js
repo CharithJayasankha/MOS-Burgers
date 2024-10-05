@@ -3,8 +3,6 @@ const burgerUpdateList = JSON.parse(sessionStorage.getItem("burgers"));
 const beverageUpdateList = JSON.parse(sessionStorage.getItem("beverages"));
 
 const cartProductList = JSON.parse(sessionStorage.getItem("array")) || [];
-console.log(beverages);
-console.log(burgers);
 
 let burgerList = document.getElementById("burgerList");
 let drinkList = document.getElementById("drinkList");
@@ -116,6 +114,7 @@ function createCards(array, parentElement) {
   });
 }
 
+// execute add to cart btn in model.
 document.addEventListener("click", function (e) {
   if (e.target && e.target.classList.contains("btn")) {
     const productCode = e.target.getAttribute("data-code");
@@ -123,12 +122,15 @@ document.addEventListener("click", function (e) {
   }
 });
 
+// navigation btn
 document.addEventListener("click", function (e) {
   if (e.target && e.target.classList.contains("categoryBtn")) {
     const num = e.target.getAttribute("tabNum");
     go(num);
   }
 });
+
+//set count to cart
 productCount.textContent = cartProductList.length;
 
 function addToCart(code) {
@@ -140,7 +142,7 @@ function addToCart(code) {
 
   for (let index = 0; index < allProducts.length; index++) {
     if (allProducts[index].code == code) {
-      allProducts[index].qty = quantity.value;
+      allProducts[index].qty = quantity.value; // set qty value
       cartProductList.push(allProducts[index]);
       sessionStorage.setItem("array", JSON.stringify(cartProductList));
       productCount.textContent = cartProductList.length;
@@ -148,6 +150,7 @@ function addToCart(code) {
   }
 }
 
+// cart icon button
 document.getElementById("cartBtn").onclick = function cartBtn() {
   window.location.href = "cartPage.html";
 };

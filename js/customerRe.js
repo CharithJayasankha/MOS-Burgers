@@ -1,16 +1,15 @@
 let customerList = getSessionArray("customers") || [];
 
-// Table body element for customers
 let customerTableBody = document.getElementById("tbody");
 
-// Main function to render the customer table
+//display customers
 function customerDisplay() {
   createCustomerRow(customerList, customerTableBody);
 }
 
-// Create rows for the customer table
+// Create rows
 function createCustomerRow(array, parentTag) {
-  parentTag.innerHTML = ""; // Clear the table before adding new rows
+  parentTag.innerHTML = "";
   array.forEach((customer, index) => {
     let row = `
       <tr>
@@ -52,7 +51,7 @@ function addCustomer() {
   customerList.push(customer);
   saveToSession("customers", customerList);
   clearCustomerForm();
-  customerDisplay(); // Re-render the updated customer table
+  customerDisplay();
 
   // Close the modal
   const modal = document.getElementById("addCustomerForm");
@@ -61,10 +60,10 @@ function addCustomer() {
   alert("Successfully Added New Customer.");
 }
 
-// Event Listener for Add Customer Button
+// Event Listener Add Customer Button
 document.querySelector(".addBtn").addEventListener("click", addCustomer);
 
-// Event Listener for Delete Customer
+// Event Listener Delete Customer
 document.addEventListener("click", function (e) {
   if (e.target.closest(".delete")) {
     const deleteLink = e.target.closest(".delete");
@@ -72,14 +71,14 @@ document.addEventListener("click", function (e) {
 
     customerList.splice(index, 1);
     saveToSession("customers", customerList);
-    customerDisplay(); // Re-render the updated customer table
+    customerDisplay();
     alert("Successfully Deleted Customer.");
   }
 });
 
 let currentCustomerIndex = -1;
 
-// Event Listener for Update Customer
+// Event Listener Update Customer
 document.addEventListener("click", function (e) {
   if (e.target.closest(".update")) {
     const updateLink = e.target.closest(".update");
@@ -99,7 +98,7 @@ function updateCustomer() {
 
   customerList[currentCustomerIndex] = customer;
   saveToSession("customers", customerList);
-  customerDisplay(); // Re-render the updated customer table
+  customerDisplay();
 
   // Close the modal
   const modal = document.getElementById("updateModel");
@@ -117,7 +116,6 @@ function updateCustomerFormFill(customer) {
   document.getElementById("updateAddress").value = customer.address;
 }
 
-// Clear the add customer form fields
 function clearCustomerForm() {
   document.getElementById("addCustomerId").value = "";
   document.getElementById("addCustomerName").value = "";
@@ -126,20 +124,17 @@ function clearCustomerForm() {
   document.getElementById("addCustomerAddress").value = "";
 }
 
-// Helper function to save array to sessionStorage
 function saveToSession(key, array) {
   sessionStorage.setItem(key, JSON.stringify(array));
 }
 
-// Helper function to get array from sessionStorage
 function getSessionArray(key) {
   return JSON.parse(sessionStorage.getItem(key));
 }
 
-// Initial render of the customer display
 customerDisplay();
 
-// Event Listener for Save Update Button
+// Event Listener Save Update Button
 document
   .getElementById("saveUpdateBtn")
   .addEventListener("click", updateCustomer);

@@ -6,7 +6,7 @@ const updateBeverageList = getSessionArray("beverages") || beverages;
 let tableBody = document.getElementById("tbody");
 let tableBody1 = document.getElementById("tbody1");
 
-// Main function to render the table
+// display rows
 function productDisplay() {
   createRow(updateBurgerList, tableBody);
   createRow(updateBeverageList, tableBody1);
@@ -14,7 +14,7 @@ function productDisplay() {
 
 // Create rows for the table
 function createRow(array, parentTag) {
-  parentTag.innerHTML = ""; // Clear the table before adding new rows
+  parentTag.innerHTML = "";
   array.forEach((item, index) => {
     let row = `
       <tr>
@@ -50,7 +50,7 @@ function createRow(array, parentTag) {
   });
 }
 
-// Add new items to the respective array (burger or beverage)
+// Add new items
 
 function addItem() {
   const category = document.getElementById("category").value;
@@ -82,12 +82,12 @@ function addItem() {
   alert("Successfully Add New Item..");
 }
 
-// Helper function to save array to sessionStorage
+// save array to sessionStorage
 function saveToSession(key, array) {
   sessionStorage.setItem(key, JSON.stringify(array));
 }
 
-// Helper function to get array from sessionStorage
+//get array from sessionStorage
 function getSessionArray(key) {
   return JSON.parse(sessionStorage.getItem(key));
 }
@@ -95,7 +95,7 @@ function getSessionArray(key) {
 // Event Listener for Add Button
 document.querySelector(".addBtn").addEventListener("click", addItem);
 
-// Event Listener for Delete (using event delegation)
+// Delete
 document.addEventListener("click", function (e) {
   if (e.target.closest(".delete")) {
     const deleteLink = e.target.closest(".delete");
@@ -110,7 +110,7 @@ document.addEventListener("click", function (e) {
       saveToSession("beverages", updateBeverageList);
     }
 
-    productDisplay(); // Re-render the updated table
+    productDisplay();
     alert("Successfully Delete Item");
   }
 });
